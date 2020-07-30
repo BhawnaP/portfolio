@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename="style.css") }}">
+    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Bhawna Pareta</title>
+</head>
+<body>
+
+    <!-- Greeting Message -->
+    <section class="s1">
+        <div class="main-container">
+            <div class="greeting-wrapper">
+                <h1>Hi! I am Bhawna Pareta</h1>
+            </div>
+
+            <div class="intro-wrapper">
+                <div class="nav-wrapper">
+                    <div class="left-corner">
+                        
+                    </div>
+                    <ul id="right-corner">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#tech-projects">Tech Projects</a></li>
+                        <li><a href="#book-reviews">Book Reviews</a></li>
+                        <li><a href="#photography">Photography</a></li>
+                        <li><a href="#contact-form">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="left-column">
+                    <img id="profilePhoto" src="{{ url_for('static', filename="images/portfolioImage.jpg") }}" alt="BhawnaPareta">
+                    <h5 style="text-align: center; line-height: 0;">Bhawna Pareta</h5>
+                    <h6 style="text-align: center; line-height: 0;">Aspiring Data Analyst, proficient in Python and Web Development</h6>
+                </div>
+
+                <div class="right-column">
+                    <div id="preview-shadow">
+                        <div id="preview">
+                            <h3>
+                                Who I Am?
+                            </h3>
+                            <p>
+                                Bachelors in Information Technology. Proficient in Python, C++, HTML, CSS, Bootstrap and Data Analytics. 
+                                Apart from that, I'm a good photographer and a great reader. Check out the entire portfolio! 
+                            </p>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+
+    <!-- About Section -->
+    <section class="s2">
+        <div class="main-container">
+
+            <div class="about-wrapper">
+                <div class="about-me" id="about">
+                    <h4>More about me</h4>
+                    <p>I completed my bachelors in 2020 from BBDITM, Lucknow. I have keen interest in developing softwares 
+                        and analysing data using Python. </p>
+                    <p> Apart from that, I love to travel and click pictures. Hopefully, someday you'll have me published in some magazine.
+                        Also, I'm a great reader, and have superpowers of finishing books just as early as you can think. 
+                    </p>
+                    <hr>
+                    <h4>Tech Expertise</h4>
+                    <p>Web Developer with primary focus on Python Flask and HTML, CSS and Bootstrap.</p>
+                    <a href="{{ url_for('static', filename="LatestCV.pdf") }}" target="_blank" style="text-decoration: underline;">Download Resume</a>
+
+                    <div id="skills">
+                        <ul id="stack1">
+                            <li>Python</li>
+                            <li>Python-Flask</li>
+                            <li>Data Visualisation using Python</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                        </ul>
+                        <ul id="stack2">
+                            <li>Bootstrap</li>
+                            <li>MySQL</li>
+                            <li>C++</li>
+                            <li>Adobe Photoshop</li>
+                            <li>RPA using UiPath Studio(Beginner)</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Tech Projects content -->
+    <section class="s1" id="tech-projects">
+        <div class="main-container" >
+            <h3 style="text-align: center;">Tech Projects</h3>
+
+           <div  class="tech-projects">
+
+                {% for r in proj %}
+                {% set fname='images/'+ r.img %}
+                 <div class="project">
+                     <img class="thumbnail" src="{{ url_for('static', filename=fname) }}" alt="">
+                     <div class="proj-preview">
+                         <h6 class="proj-title">{{ r.name }}</h6>
+                         <p class="proj-intro">{{ r.details }}
+                         </p>
+                         <a target="_blank" href={{ r.link }}>Read More</a>
+                     </div>
+                 </div>
+                {% endfor %}
+
+           </div>
+
+        </div>
+    </section>
+
+
+    <!-- Book Reviews section -->
+    <section class="s2" id="book-reviews">
+        <div class="main-container">
+            <h3 style="text-align: center;">Book Reviews</h3>
+            <div  class="tech-projects">
+                
+                {% for r in fetch %}
+                {% set fname='images/'+ r.image %}
+                 <div class="project">
+                     <img class="thumbnail" src="{{ url_for('static', filename=fname) }}" alt="">
+                     <div class="proj-preview">
+                         <h6 class="proj-title">{{ r.bookTitle }}</h6>
+                         <p class="proj-intro">{{ r.bookAuthor }}
+                         </p>
+                         <a target="_blank" href={{ url_for("review_route", slug =r.slug ) }}>Read More</a>
+                     </div>
+                 </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section class="s1" id="photography">
+        <div class="main-container">
+            <h3 style="text-align: center;">Photography</h3>
+
+           <div  class="tech-projects">
+                <div class="project">
+                    <img class="thumbnail " src="{{ url_for('static', filename="images/ph1.jpeg") }}" alt="" >
+                    <div class="proj-preview">
+                        <h6 class="proj-title">An evening shot in Lucknow</h6>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <img class="thumbnail" src="{{ url_for('static', filename="images/ph2.jpeg") }}" alt="">
+                    <div class="proj-preview">
+                        <h6 class="proj-title">Sunset above the clouds</h6> 
+                    </div>
+                </div>
+
+                <div class="project">
+                    <img class="thumbnail" src="{{ url_for('static', filename="images/ph4.jpg") }}" alt="">
+                    <div class="proj-preview">
+                        <h6 class="proj-title">Bird eye view of Andamans</h6>  
+                    </div>
+                </div>
+
+                <div class="project">
+                    <img class="thumbnail" src="{{ url_for('static', filename="images/ph3.jpg") }}" alt="">
+                    <div class="proj-preview">
+                        <h6 class="proj-title">Looking through the trees</h6> 
+                    </div>
+                </div>
+
+                <div class="project">
+                    <img class="thumbnail" src="{{ url_for('static', filename="images/ph5.jpeg") }}" alt="">
+                    <div class="proj-preview">
+                        <h6 class="proj-title">A casual orange-sky evening</h6>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <a target="_blank" href="https://www.instagram.com/snapbeeeee/"><img class="thumbnail" src="{{ url_for('static', filename="images/view-more.png") }}" alt=""></a>
+                    <div class="proj-preview">
+                        <h6 class="proj-title">View more on Instagram</h6>
+                    </div>
+                </div>
+           </div>
+
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="s2">
+        <div class="main-container">
+            <h3 style="text-align: center;">Get in Touch</h3>
+            <form id="contact-form" action="mailto:misha.55.bhawna@gmail.com" enctype="text/plain" method="POST">
+
+                <label >Name</label><br>
+                <input type="text"  name="Name" class="input-field"><br>
+
+                <label >Subject</label><br>
+                <input type="text"  name="Subject" class="input-field"><br>
+
+                <label >Email</label><br>
+                <input type="text"  name="email" class="input-field"><br>
+
+                <label >Message</label><br>
+                <textarea name="message" class="input-field"></textarea><br>
+
+
+                <input type="submit" value="Send" id="submit-btn">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <a href="https://github.com/BhawnaP" class="fa fa-github" target="_blank"></a>
+            <a href="https://www.linkedin.com/in/bhawna-pareta-4b6648146/" class="fa fa-linkedin"target="_blank"></a>
+            <a href="https://www.instagram.com/snapbeeeee/" class="fa fa-instagram" target="_blank"></a>
+            <a href="https://www.facebook.com/bhawna.pareta.7/" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://in.pinterest.com/bhawnapareta7/boards/" class="fa fa-pinterest" target="_blank"></a>
+        </div>
+    </footer>
+</body>
+</html>

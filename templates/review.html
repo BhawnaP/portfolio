@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+    {% block content %}
+
+
+    {% set fname='images/'+ review.image %}
+        <div class="about-wrapper">
+            <div class="book-img">
+                <img class="project thumbnail" src="{{ url_for('static', filename= fname) }} " alt="November 9 book cover" 
+                style="width: 100%; height: 100%; align-items: center;">
+            </div>
+            <div class="about-me" id="about">
+                <h1>{{ review.bookTitle }}</h1> 
+                <h6>{{ review.bookAuthor }}</h6>
+                <hr>
+
+                <p style="text-align: left;">
+                    {{ review.bookReview }}
+                </p>
+                <hr>
+            </div>
+        </div>
+
+    {% endblock %}
+            
