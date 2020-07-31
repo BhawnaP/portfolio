@@ -1,15 +1,24 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 import pyodbc, urllib
-    
+import json
+from flask_frozen import Freezer
+
+
 app=Flask(__name__)
 app.secret_key = "thisissecretkey"
+
 
 params = urllib.parse.quote_plus('DRIVER={SQL Server};SERVER=DESKTOP-HUMUQNN\SQLEXPRESS;DATABASE=portfolioDb;Trusted_Connection=yes;')
 app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
 
 db = SQLAlchemy(app)
 
+
+freezer = Freezer(app)
+
+if __name__ == '__main__':
+    freezer.freeze()
 
 class review_table(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
