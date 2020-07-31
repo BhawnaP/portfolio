@@ -17,8 +17,7 @@ db = SQLAlchemy(app)
 
 freezer = Freezer(app)
 
-if __name__ == '__main__':
-    freezer.freeze()
+freezer.freeze()
 
 class review_table(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
